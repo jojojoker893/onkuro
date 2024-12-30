@@ -10,13 +10,14 @@ module OnkuroApi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
-    config.autoload_lib(ignore: %w[assets tasks])
+
     config.api_only = true
+    
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resources '*',
-          headers: any,
+        resource '*',
+          headers: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head]
         end
       end
